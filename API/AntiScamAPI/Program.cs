@@ -28,25 +28,56 @@ builder.Services.AddCors(options =>
 
 // Add PostgreSQL DbContext
 var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
-if (string.IsNullOrEmpty(connectionString))
+
+// Debug logging
+Console.WriteLine($"[DEBUG] DATABASE_URL exists: {!string.IsNullOrEmpty(connectionString)}");
+if (!string.IsNullOrWhiteSpace(connectionString))
+{
+    Console.WriteLine($"[DEBUG] DATABASE_URL length: {connectionString.Length}");
+    Console.WriteLine($"[DEBUG] DATABASE_URL first 30 chars: {(connectionString.Length >= 30 ? connectionString.Substring(0, 30) : connectionString)}");
+    Console.WriteLine($"[DEBUG] Starts with 'postgres://': {connectionString.StartsWith("postgres://")}");
+    Console.WriteLine($"[DEBUG] Starts with 'postgresql://': {connectionString.StartsWith("postgresql://")}");
+}
+
+if (string.IsNullOrWhiteSpace(connectionString))
 {
     // Fallback for local development
     connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    Console.WriteLine("[DEBUG] Using DefaultConnection from appsettings");
 }
 
-// Railway PostgreSQL URLs need to be converted from postgres:// to the EF Core format
-// Only convert if it's in postgres:// format, otherwise use as-is (Railway may provide it pre-formatted)
-if (!string.IsNullOrEmpty(connectionString) && connectionString.StartsWith("postgres://"))
+// Railway PostgreSQL URLs need to be converted from postgres:// or postgresql:// to the EF Core format
+if (!string.IsNullOrWhiteSpace(connectionString) && (connectionString.StartsWith("postgres://") || connectionString.StartsWith("postgresql://")))
 {
-    connectionString = connectionString.Replace("postgres://", "");
-    var parts = connectionString.Split('@');
+    Console.WriteLine("[DEBUG] Converting postgres:// URL to EF Core format");
+
+    // Remove the protocol prefix
+    var withoutProtocol = connectionString.Replace("postgresql://", "").Replace("postgres://", "");
+
+    // Parse the connection string: username:password@host:port/database
+    var parts = withoutProtocol.Split('@');
+    if (parts.Length != 2)
+    {
+        throw new InvalidOperationException($"Invalid DATABASE_URL format. Expected format: postgres://username:password@host:port/database");
+    }
+
     var userInfo = parts[0].Split(':');
     var hostInfo = parts[1].Split('/');
     var hostPort = hostInfo[0].Split(':');
 
     connectionString = $"Host={hostPort[0]};Port={hostPort[1]};Database={hostInfo[1]};Username={userInfo[0]};Password={userInfo[1]};SSL Mode=Require;Trust Server Certificate=true";
+    Console.WriteLine("[DEBUG] Successfully converted connection string");
 }
-// If Railway provides a pre-formatted connection string, it will be used as-is
+else if (!string.IsNullOrWhiteSpace(connectionString))
+{
+    Console.WriteLine("[DEBUG] Using connection string as-is (assuming EF Core format)");
+}
+
+// Validate that we have a connection string
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    throw new InvalidOperationException("No database connection string found. Please set DATABASE_URL environment variable.");
+}
 
 builder.Services.AddDbContext<AntiScamDbContext>(options =>
     options.UseNpgsql(connectionString));
