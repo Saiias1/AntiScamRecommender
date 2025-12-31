@@ -1,0 +1,2095 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Scam Educatie Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green-light: #d9f4cd;
+            --yellow-light: #faf1b3;
+            --green: #00bf63;
+            --green-dark: #009951;
+            --text-dark: #2c3e50;
+            --text-gray: #7f8c8d;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #d9f4cd 0%, #e8f9df 25%, #f0fce8 50%, #faf1b3 100%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(0, 191, 99, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 191, 99, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(250, 241, 179, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Floating Orbs */
+        .floating-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 191, 99, 0.6) 0%, transparent 70%);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(250, 241, 179, 0.5) 0%, transparent 70%);
+            top: 60%;
+            right: 15%;
+            animation-delay: 5s;
+            animation-duration: 30s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 191, 99, 0.4) 0%, transparent 70%);
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 10s;
+            animation-duration: 35s;
+        }
+
+        .orb-4 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(217, 244, 205, 0.6) 0%, transparent 70%);
+            top: 30%;
+            right: 10%;
+            animation-delay: 15s;
+            animation-duration: 28s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            50% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+            75% {
+                transform: translate(40px, 10px) scale(1.05);
+            }
+        }
+
+        body.tech-mode .orb-1 {
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.4) 0%, transparent 70%);
+        }
+
+        body.tech-mode .orb-2 {
+            background: radial-gradient(circle, rgba(15, 52, 96, 0.5) 0%, transparent 70%);
+        }
+
+        body.tech-mode .orb-3 {
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.3) 0%, transparent 70%);
+        }
+
+        body.tech-mode .orb-4 {
+            background: radial-gradient(circle, rgba(26, 35, 50, 0.6) 0%, transparent 70%);
+        }
+
+        /* Tech Mode */
+        body.tech-mode {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 100%);
+            background-attachment: fixed;
+            color: #e0e0e0;
+        }
+
+        body.tech-mode::before {
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(15, 52, 96, 0.3) 0%, transparent 50%);
+        }
+
+        body.tech-mode .logo,
+        body.tech-mode .hero h1,
+        body.tech-mode .card h2,
+        body.tech-mode .module-title,
+        body.tech-mode .step-title {
+            color: #00ff88;
+        }
+
+        body.tech-mode .hero p,
+        body.tech-mode .module-description,
+        body.tech-mode .module-meta,
+        body.tech-mode p {
+            color: #888;
+        }
+
+        body.tech-mode .card {
+            background: #1a1a2e;
+            border-color: #00ff88;
+        }
+
+        body.tech-mode .module-card,
+        body.tech-mode .interest-tag {
+            background: #16213e;
+            border-color: #00ff88;
+        }
+
+        body.tech-mode .interest-tag.selected {
+            background: #00ff88;
+            color: #0f0f23;
+        }
+
+        body.tech-mode .module-card:hover,
+        body.tech-mode .module-card.completed {
+            background: #1a2332;
+            border-color: #00ff88;
+            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        body.tech-mode .form-group input,
+        body.tech-mode .form-group select {
+            background: #0f0f23;
+            border-color: #00ff88;
+            color: #e0e0e0;
+        }
+
+        body.tech-mode .btn-primary {
+            background: #00ff88;
+            color: #0f0f23;
+            border-color: #00dd77;
+        }
+
+        body.tech-mode .btn-secondary {
+            border-color: #00ff88;
+            color: #00ff88;
+            background: transparent;
+        }
+
+        body.tech-mode .mode-toggle {
+            background: #1a1a2e;
+        }
+
+        body.tech-mode .status-success {
+            background: #1a2e1a;
+            color: #00ff88;
+        }
+
+        body.tech-mode .progress-bar {
+            background: #0f0f23;
+        }
+
+        body.tech-mode .progress-fill {
+            background: #00ff88;
+        }
+
+        body.tech-mode .quiz-option {
+            background: #16213e;
+            border-color: #00ff88;
+        }
+
+        body.tech-mode .quiz-option.selected {
+            background: #00ff88;
+            color: #0f0f23;
+        }
+
+        body.tech-mode .star {
+            color: #888;
+        }
+
+        body.tech-mode .star.active {
+            color: #00ff88;
+        }
+
+        body.tech-mode .modal {
+            background: rgba(15, 15, 35, 0.95);
+        }
+
+        body.tech-mode .modal-content {
+            background: #1a1a2e;
+            border-color: #00ff88;
+        }
+
+        body.tech-mode .api-status.online {
+            background: #1a2e1a;
+            color: #00ff88;
+        }
+
+        body.tech-mode .api-status.offline {
+            background: #2e1a1a;
+            color: #ff4444;
+        }
+
+        /* Header */
+        .header {
+            max-width: 1400px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Sticky header only on mobile */
+        @media (max-width: 768px) {
+            .header {
+                position: sticky;
+                top: -1px;
+                background: linear-gradient(180deg, rgba(217, 244, 205, 0.98) 0%, rgba(217, 244, 205, 0.95) 100%);
+                backdrop-filter: blur(12px);
+                z-index: 100;
+                padding: 0.5rem 0.875rem;
+                border-radius: 0;
+                box-shadow: 0 2px 8px rgba(0, 191, 99, 0.1);
+                border-bottom: 2px solid rgba(0, 191, 99, 0.2);
+                margin-bottom: 0;
+            }
+
+            body.tech-mode .header {
+                background: linear-gradient(180deg, rgba(26, 26, 46, 0.98) 0%, rgba(26, 26, 46, 0.95) 100%);
+                border-bottom: 2px solid rgba(0, 255, 136, 0.2);
+                box-shadow: 0 2px 8px rgba(0, 255, 136, 0.1);
+            }
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .header-right {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        /* API Status - hidden in user mode */
+        .api-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        body.tech-mode .api-status {
+            display: flex;
+        }
+
+        .api-status.online {
+            background: #d9f4cd;
+            color: #009951;
+        }
+
+        .api-status.offline {
+            background: #ffe0e0;
+            color: #cc0000;
+        }
+
+        .api-status.checking {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Profile Button */
+        .btn-profile {
+            padding: 0.5rem 1rem;
+            background: var(--green);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-profile:hover {
+            background: var(--green-dark);
+        }
+
+        body.tech-mode .btn-profile {
+            background: #00ff88;
+            color: #0f0f23;
+        }
+
+        body.tech-mode .btn-profile:hover {
+            background: #00dd77;
+        }
+
+        /* Debug Button (tech mode only) */
+        .debug-btn {
+            display: none;
+            padding: 0.5rem 1rem;
+            background: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .debug-btn:hover {
+            background: #8e44ad;
+        }
+
+        body.tech-mode .debug-btn {
+            display: block;
+        }
+
+        .mode-toggle {
+            background: var(--white);
+            border-radius: 50px;
+            padding: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .mode-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .mode-btn.active {
+            background: var(--green);
+            color: var(--white);
+            box-shadow: 0 4px 10px rgba(0, 191, 99, 0.3);
+        }
+
+        .mode-btn:not(.active) {
+            background: transparent;
+            color: var(--text-gray);
+        }
+
+        /* Tech mode styling - keep green visible */
+        body.tech-mode .mode-btn.active {
+            background: var(--green);
+            color: var(--white);
+            box-shadow: 0 4px 10px rgba(0, 191, 99, 0.5);
+        }
+
+        body.tech-mode .mode-btn:not(.active) {
+            color: #888;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 100%;
+            }
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+
+        /* Tech Info */
+        .tech-info {
+            background: #9b59b6;
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: none;
+            font-family: 'Courier New', monospace;
+        }
+
+        .tech-info strong {
+            color: var(--yellow-light);
+        }
+
+        body.tech-mode .tech-info {
+            display: block !important;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card */
+        .card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            border: 3px solid var(--green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 191, 99, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .card h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .card h2::before {
+            content: '🎯';
+            margin-right: 0.5rem;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: var(--green);
+            height: 100%;
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        /* Progress Stats */
+        /* Dashboard Top Grid */
+        .dashboard-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-top .news-banner {
+            margin-bottom: 0;
+            background: linear-gradient(135deg, var(--yellow-light) 0%, #fff9e6 100%);
+            border: 2px solid var(--green);
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 191, 99, 0.1);
+            padding: 1.5rem;
+        }
+
+        .dashboard-top .card {
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .progress-stats {
+            text-align: center;
+            padding: 1.5rem;
+            background:
+                linear-gradient(135deg, rgba(217, 244, 205, 0.9) 0%, rgba(232, 249, 223, 0.9) 100%),
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 191, 99, 0.03) 10px, rgba(0, 191, 99, 0.03) 20px);
+            border-radius: 12px;
+            flex: 1;
+        }
+
+        .progress-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--green);
+        }
+
+        .progress-label {
+            color: var(--text-gray);
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Steps */
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .step-description {
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Form */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 1rem 1.25rem;
+            border: 3px solid var(--green-light);
+            border-radius: 14px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 0 4px rgba(0, 191, 99, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Interest Tags */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .interest-tag {
+            background: var(--white);
+            border: 3px solid var(--green-light);
+            border-radius: 16px;
+            padding: 1.25rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .interest-tag:hover {
+            transform: translateY(-4px);
+            border-color: var(--green);
+            box-shadow: 0 6px 20px rgba(0, 191, 99, 0.2);
+        }
+
+        .interest-tag.selected {
+            background: var(--green);
+            color: var(--white);
+            border-color: var(--green-dark);
+            box-shadow: 0 6px 20px rgba(0, 191, 99, 0.3);
+        }
+
+        .interest-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Quiz */
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+
+        .quiz-question-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .quiz-option {
+            background: var(--white);
+            border: 3px solid var(--green-light);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--green);
+            transform: translateX(4px);
+        }
+
+        .quiz-option.selected {
+            background: var(--green);
+            color: var(--white);
+            border-color: var(--green-dark);
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1.1rem 2.5rem;
+            border: none;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(0, 191, 99, 0.4);
+            border: 3px solid var(--green-dark);
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: var(--green-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 191, 99, 0.5);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--green);
+            border: 3px solid var(--green);
+            box-shadow: 0 4px 15px rgba(0, 191, 99, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: var(--green-light);
+            transform: translateY(-3px);
+        }
+
+        .back-button {
+            margin-bottom: 2rem !important;
+            display: inline-block;
+        }
+
+        .btn-skip {
+            background: transparent;
+            border: 2px solid var(--text-gray);
+            color: var(--text-gray);
+            padding: 0.875rem 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .btn-skip:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        /* Status */
+        .status-message {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background: var(--green-light);
+            color: var(--green-dark);
+        }
+
+        /* Score Display */
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: var(--green-light);
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .score-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--green);
+            margin-bottom: 0.5rem;
+        }
+
+        .score-label {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            font-weight: 600;
+        }
+
+        /* Module Categories */
+        .module-category {
+            margin-bottom: 1.5rem;
+        }
+
+        .category-header {
+            background: var(--green-light);
+            padding: 1.25rem 1.5rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 3px solid var(--green);
+        }
+
+        .category-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 191, 99, 0.2);
+        }
+
+        body.tech-mode .category-header {
+            background: #1a2332;
+            border-color: #00ff88;
+        }
+
+        body.tech-mode .category-header:hover {
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        body.tech-mode .category-title {
+            color: #00ff88;
+        }
+
+        .category-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .category-header.collapsed .category-toggle {
+            transform: rotate(-90deg);
+        }
+
+        .category-modules {
+            margin-top: 1rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 1400px) {
+            .category-modules {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+
+        .category-modules.active {
+            display: grid !important;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modules Grid */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 1400px) {
+            .modules-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+
+        .module-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 3px solid var(--green-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card.completed {
+            border-color: var(--green);
+            background: var(--green-light);
+        }
+
+        .module-card::after {
+            content: '→';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--green);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover::after {
+            opacity: 1;
+            right: 1rem;
+        }
+
+        .module-card:hover {
+            border-color: var(--green);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 191, 99, 0.2);
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .module-emoji {
+            font-size: 2.5rem;
+        }
+
+        .module-badge {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .module-score {
+            background: var(--green);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .module-completed {
+            background: var(--green);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .module-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .module-description {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .module-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            flex-wrap: wrap;
+        }
+
+        .module-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Rating Stars */
+        .rating-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .rating-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .star {
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #ddd;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #FFD700;
+            transform: scale(1.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2rem;
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 3px solid var(--green);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-gray);
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #f0f0f0;
+        }
+
+        .debug-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .debug-section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        body.tech-mode .debug-section h3 {
+            color: #00ff88;
+        }
+
+        .debug-data {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            color: #2c3e50;
+        }
+
+        body.tech-mode .debug-data {
+            background: #0f0f23;
+            color: #00ff88;
+            border: 1px solid #00ff88;
+        }
+
+        .debug-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .debug-btn-action {
+            padding: 0.75rem 1rem;
+            background: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .debug-btn-action:hover {
+            background: #8e44ad;
+            transform: translateY(-2px);
+        }
+
+        body.tech-mode .debug-btn-action {
+            background: #16213e;
+            border: 2px solid #00ff88;
+            color: #00ff88;
+        }
+
+        body.tech-mode .debug-btn-action:hover {
+            background: #00ff88;
+            color: #0f0f23;
+        }
+
+        /* News Banner */
+        .news-banner {
+            background: var(--yellow-light);
+            border: 2px solid var(--green);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 191, 99, 0.1), 0 4px 16px rgba(0, 191, 99, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .news-banner:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 191, 99, 0.2), 0 8px 24px rgba(0, 191, 99, 0.1);
+            border-color: var(--green-dark);
+        }
+
+        body.tech-mode .news-banner {
+            background: linear-gradient(135deg, #1a2332 0%, #16213e 100%);
+            border-color: #00ff88;
+        }
+
+        .news-icon {
+            font-size: 1.75rem;
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .news-content {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            text-align: left;
+        }
+
+        .news-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        body.tech-mode .news-title {
+            color: #00ff88;
+        }
+
+        .news-meta {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .news-meta span:nth-child(3) {
+            color: var(--green-dark);
+            font-weight: 600;
+        }
+
+        .news-related-badge {
+            background: var(--green);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-left: 0.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .news-related-badge:hover {
+            background: var(--green-dark);
+            transform: scale(1.05);
+        }
+
+        body.tech-mode .news-meta {
+            color: #888;
+        }
+
+        body.tech-mode .news-related-badge {
+            background: #00ff88;
+            color: #0f0f23;
+        }
+
+        .news-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        /* Loading */
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e0e0e0;
+            border-top-color: var(--green);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 0.75rem;
+                padding-top: 0;
+            }
+
+            .header {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0.5rem 0.875rem;
+                margin-bottom: 0;
+                gap: 0.5rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+                font-weight: 700;
+                text-align: left;
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+
+            .header-right {
+                flex-direction: row;
+                gap: 0.4rem;
+                justify-content: flex-end;
+                align-items: center;
+                flex-wrap: nowrap;
+            }
+
+            .mode-toggle {
+                padding: 0.2rem;
+                flex: 0 0 auto;
+                min-width: 0;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            }
+
+            .mode-btn {
+                padding: 0.4rem 0.65rem;
+                font-size: 0.7rem;
+            }
+
+            .btn-profile {
+                padding: 0.4rem 0.65rem;
+                font-size: 0.7rem;
+                border-radius: 16px;
+            }
+
+            .debug-btn {
+                display: none !important;
+            }
+
+            .api-status {
+                display: none !important;
+            }
+
+            .hero {
+                margin-bottom: 1.5rem;
+                margin-top: 0.75rem;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+                line-height: 1.2;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 0 0.75rem;
+            }
+
+            .card {
+                padding: 1.25rem;
+                border-radius: 14px;
+                margin-bottom: 1rem;
+            }
+
+            .card h2 {
+                font-size: 1.35rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .card h2::before {
+                font-size: 1.25rem;
+            }
+
+            .step-title {
+                font-size: 1.2rem;
+            }
+
+            .step-description {
+                font-size: 0.9rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .interests-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.65rem;
+            }
+
+            .interest-tag {
+                padding: 0.875rem 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .interest-emoji {
+                font-size: 1.75rem;
+                margin-bottom: 0.25rem;
+            }
+
+            .modules-grid,
+            .category-modules {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .module-card {
+                padding: 1rem;
+            }
+
+            .module-emoji {
+                font-size: 1.75rem;
+            }
+
+            .module-title {
+                font-size: 1rem;
+                margin-bottom: 0.35rem;
+            }
+
+            .module-description {
+                font-size: 0.85rem;
+                line-height: 1.4;
+                margin-bottom: 0.75rem;
+            }
+
+            .module-meta {
+                font-size: 0.75rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 0.65rem;
+                margin-top: 1.25rem;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 0.875rem 1.25rem;
+                font-size: 0.95rem;
+            }
+
+            .btn-secondary {
+                margin-left: 0 !important;
+            }
+
+            .score-display {
+                padding: 1.25rem;
+                margin: 1.25rem 0;
+            }
+
+            .score-number {
+                font-size: 2.5rem;
+            }
+
+            .score-label {
+                font-size: 1rem;
+            }
+
+            .dashboard-top {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .progress-stats {
+                padding: 1rem;
+            }
+
+            .progress-number {
+                font-size: 1.75rem;
+            }
+
+            .progress-label {
+                font-size: 0.9rem;
+            }
+
+            .quiz-option {
+                padding: 0.75rem 0.875rem;
+                font-size: 0.9rem;
+            }
+
+            .quiz-question-text {
+                font-size: 1.05rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .category-header {
+                padding: 1rem;
+            }
+
+            .category-title {
+                font-size: 1.1rem;
+            }
+
+            .modal {
+                padding: 0.75rem;
+            }
+
+            .modal-content {
+                padding: 1.25rem;
+                max-height: 92vh;
+                border-radius: 16px;
+            }
+
+            .modal-title {
+                font-size: 1.2rem;
+            }
+
+            .star {
+                font-size: 2.25rem;
+            }
+
+            .rating-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .tech-info {
+                font-size: 0.75rem;
+                padding: 0.75rem 0.875rem;
+                margin: 0.75rem 0;
+                line-height: 1.4;
+            }
+
+            .form-group {
+                margin-bottom: 1.25rem;
+            }
+
+            .form-group label {
+                font-size: 0.9rem;
+                margin-bottom: 0.35rem;
+            }
+
+            .form-group input,
+            .form-group select {
+                padding: 0.875rem 1rem;
+                font-size: 0.95rem;
+            }
+
+            /* Floating orbs - hidden on mobile */
+            .orb-1, .orb-2, .orb-3, .orb-4 {
+                display: none;
+            }
+
+            /* Compact progress bar */
+            .progress-bar {
+                height: 6px;
+                margin-bottom: 1.25rem;
+            }
+
+            .news-banner {
+                flex-direction: row;
+                padding: 0.875rem 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .news-icon {
+                font-size: 1.25rem;
+            }
+
+            .news-title {
+                font-size: 0.85rem;
+            }
+
+            .news-meta {
+                font-size: 0.7rem;
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            body {
+                padding: 0 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .card h2 {
+                font-size: 1.25rem;
+            }
+
+            .interests-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .interest-tag {
+                padding: 0.75rem;
+            }
+
+            .score-number {
+                font-size: 2.25rem;
+            }
+
+            .progress-number {
+                font-size: 1.5rem;
+            }
+
+            .module-meta {
+                flex-direction: column;
+                gap: 0.35rem;
+                align-items: flex-start;
+            }
+
+            .star {
+                font-size: 1.875rem;
+            }
+
+            .stars {
+                gap: 0.2rem;
+            }
+
+            .module-card {
+                padding: 0.875rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Landscape mobile optimization */
+        @media (max-width: 900px) and (orientation: landscape) {
+            .hero {
+                margin-bottom: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.35rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .card {
+                margin-bottom: 0.75rem;
+                padding: 1rem;
+            }
+
+            .modal-content {
+                max-height: 75vh;
+            }
+
+            .header {
+                padding: 0.5rem 1rem;
+            }
+
+            .score-display,
+            .progress-stats {
+                padding: 0.875rem;
+            }
+        }
+
+        /* Tablet optimization */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .modules-grid,
+            .category-modules {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .interests-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Orbs -->
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+    <div class="floating-orb orb-4"></div>
+
+    <div class="header">
+        <div class="logo">Project Anti-Scam App</div>
+        <div class="header-right">
+            <div class="api-status checking" id="apiStatus">
+                <span class="status-dot"></span>
+                <span id="apiStatusText">checking...</span>
+            </div>
+            <button class="btn-profile" id="profileBtn" onclick="showProfile()" style="display: none;">👤 profiel</button>
+            <button class="btn-profile" id="logoutBtn" onclick="logout()" style="display: none; background: #ef4444;">🚪 Uitloggen</button>
+            <button class="debug-btn" onclick="openDebugPanel()">🔧 debug panel</button>
+            <div class="mode-toggle">
+                <button class="mode-btn active" onclick="setMode('user')">🤓 User</button>
+                <button class="mode-btn" onclick="setMode('tech')">🧑‍💻 Tech</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Leer oplichting herkennen en blijf veilig online</h1>
+            <p>Gepersonaliseerde training om jezelf te beschermen tegen digitale oplichting</p>
+
+            <!-- News Banner on Homepage -->
+            <div class="news-banner" id="newsBannerHome" style="max-width: 800px; margin: 1.5rem auto 1rem;">
+                <span class="news-icon">📰</span>
+                <div class="news-content">
+                    <div class="news-title" id="newsTitleHome">Laden...</div>
+                    <div class="news-meta">
+                        <span id="newsDateHome">-</span>
+                        <span>•</span>
+                        <span id="newsSourceHome">-</span>
+                        <span class="news-related-badge" id="newsRelatedHome" style="display: none;"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-info" style="max-width: 800px; margin: 0 auto 1rem;">
+                🔧 <strong>News system:</strong> Currently showing demo news from static JSON | Production: fetch from Belgian cybersecurity RSS feeds (CERT.be, Politie.be) | Auto-refresh every 10s | Click to open source
+            </div>
+
+            <div class="tech-info">
+                🔧 <strong>System:</strong> ML.NET hybrid engine | Dataset: 1001 users, 30 modules, 20k ratings | MAE: 0.50, RMSE: 0.63, R²: 0.58
+            </div>
+        </div>
+
+        <!-- Homepage CTA Buttons (shown on first visit, hidden div for JS control) -->
+        <div id="homepageButtons" style="display: none;"></div>
+
+        <!-- Login Screen -->
+        <div class="card" id="loginCard" style="display: none;">
+            <div class="step-title" style="text-align: center; margin-bottom: 1rem;">🔐 Welkom terug!</div>
+            <div class="step-description" style="text-align: center; margin-bottom: 2rem;">Log in om verder te gaan met je leerpad.</div>
+
+            <div class="form-group">
+                <label>Gebruikersnaam</label>
+                <input type="text" id="loginUsername" placeholder="voer je gebruikersnaam in" required onkeypress="if(event.key==='Enter') attemptLogin()">
+            </div>
+
+            <div class="form-group">
+                <label>Wachtwoord</label>
+                <input type="password" id="loginPassword" placeholder="voer je wachtwoord in" required onkeypress="if(event.key==='Enter') attemptLogin()">
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="attemptLogin()" style="width: 100%;">Inloggen →</button>
+            </div>
+
+            <div style="text-align: center; margin-top: 1.5rem; color: var(--text-gray);">
+                <p style="margin-bottom: 0.75rem;">Nog geen account?</p>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                    <button class="btn btn-secondary" onclick="showRegister()" style="flex: 1; min-width: 200px;">Maak een nieuw profiel aan</button>
+                    <button class="btn btn-secondary" onclick="startGuestMode()" style="flex: 1; min-width: 200px; background: transparent; border: 2px solid var(--green); color: var(--green);">Bekijk als gast</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Onboarding -->
+        <div class="card" id="onboardingCard" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+
+            <div id="statusMessage"></div>
+
+            <!-- Step 1 -->
+            <div class="step active" id="step1">
+                <div class="step-title">Stap 1: vertel ons over jezelf</div>
+                <div class="step-description">We gebruiken dit om je ervaring te personaliseren.</div>
+
+                <div class="tech-info">
+                    🔧 <strong>Data collection:</strong> username + password + age → user profiling → secure account storage
+                </div>
+
+                <div class="form-group">
+                    <label>Gebruikersnaam</label>
+                    <input type="text" id="username" placeholder="kies een gebruikersnaam" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Wachtwoord</label>
+                    <input type="password" id="password" placeholder="minimaal 4 karakters" required minlength="4">
+                    <small style="color: var(--text-gray); font-size: 0.85rem; margin-top: 0.25rem; display: block;">
+                        Dit wordt gebruikt om later in te loggen.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label>Leeftijd</label>
+                    <select id="age" required>
+                        <option value="">selecteer je leeftijdsgroep</option>
+                        <option value="18-25">18-25</option>
+                        <option value="26-35">26-35</option>
+                        <option value="36-45">36-45</option>
+                        <option value="46-60">46-59</option>
+                        <option value="60+">60+</option>
+                    </select>
+                </div>
+
+                <div class="tech-info">
+                    🔧 <strong>Age mapping:</strong> matching PostgreSQL database age_groups (18-25, 26-35, 36-45, 46-60, 60+) | younger → advanced | older → beginner-friendly
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="nextStep()">Volgende →</button>
+                    <button class="btn btn-secondary" onclick="showLogin()" style="margin-left: 0.5rem;">Heb je al een account? Log in</button>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step" id="step2">
+                <div class="step-title">Stap 2: waar wil je over leren?</div>
+                <div class="step-description">Selecteer de onderwerpen die je interesseren (meerdere mogelijk).</div>
+
+                <div class="tech-info">
+                    🔧 <strong>Cold-start strategy:</strong> selected categories → content-based seed → initial recommendations before collaborative filtering has data
+                </div>
+
+                <div class="interests-grid" id="interestsGrid">
+                    <div class="interest-tag" onclick="toggleInterest(this, 'phishing')">
+                        <span class="interest-emoji">🎣</span>
+                        Phishing e-mails
+                    </div>
+                    <div class="interest-tag" onclick="toggleInterest(this, 'bank')">
+                        <span class="interest-emoji">🏦</span>
+                        Bankfraude
+                    </div>
+                    <div class="interest-tag" onclick="toggleInterest(this, 'whatsapp')">
+                        <span class="interest-emoji">📱</span>
+                        WhatsApp-fraude
+                    </div>
+                    <div class="interest-tag" onclick="toggleInterest(this, 'ai_voice')">
+                        <span class="interest-emoji">🤖</span>
+                        AI-spraakoplichting
+                    </div>
+                    <div class="interest-tag" onclick="toggleInterest(this, 'shopping')">
+                        <span class="interest-emoji">🛍</span>
+                        Online winkel-fraude
+                    </div>
+                </div>
+
+                <div class="tech-info">
+                    🔧 <strong>Scam types from database:</strong> phishing, bank, whatsapp, ai_voice, shopping | matched to module categories for content-based filtering → stored in PostgreSQL
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="previousStep()">← Terug</button>
+                    <button class="btn btn-primary" onclick="nextStep()">Volgende →</button>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step" id="step3">
+                <div class="step-title">Stap 3: digitale vaardigheden quiz</div>
+                <div class="step-description">5 vragen om je kennis te meten - geen zorgen, dit is geen test!</div>
+
+                <div class="tech-info">
+                    🔧 <strong>Profiling logic:</strong> quiz score (0-5) → digital literacy level (matching CSV 1-5 scale) → difficulty adjustment → starting module recommendations
+                </div>
+
+                <div id="quizContainer"></div>
+
+                <div class="tech-info">
+                    🔧 <strong>Scoring:</strong> each correct = +1 | total → literacy level (0-1: 1, 2: 2, 3: 3, 4: 4, 5: 5) | stored in user profile
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="previousStep()">← Terug</button>
+                    <button class="btn btn-primary" onclick="completeOnboarding()">Voltooien!</button>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step" id="step4">
+                <div class="step-title">Je profiel is klaar! 🎉</div>
+
+                <div class="score-display">
+                    <div class="score-number" id="quizScore">0/5</div>
+                    <div class="score-label" id="scoreMessage">Digitaal vaardigheidsniveau</div>
+                </div>
+
+                <div class="tech-info">
+                    🔧 <strong>Profile created:</strong> userId: <span id="techUserId"></span> | age: <span id="techAge"></span> | interests: <span id="techInterests"></span> | literacy: <span id="techLiteracy"></span>/5
+                </div>
+
+                <div class="tech-info">
+                    🔧 <strong>Recommendation engine:</strong> POST /api/users/register → user profile stored → hybrid algorithm initialized (70% collaborative + 30% content) → ready for personalized modules
+                </div>
+
+                <p style="text-align: center; margin: 2rem 0; color: var(--text-gray);">
+                    We hebben je persoonlijke leerpad klaar.
+                </p>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="backToInterests()">← Aanpassen</button>
+                    <button class="btn btn-primary" onclick="loadDashboard()">
+                        Bekijk mijn modules →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="dashboardSection" style="display: none;">
+            <!-- Progress -->
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div class="progress-stats">
+                    <div class="progress-number" id="progressNumber">0 voltooid</div>
+                    <div class="progress-label" id="progressLabel">Begin je leerpad.</div>
+                </div>
+
+                <div class="tech-info">
+                    🔧 <strong>Progress tracking:</strong> completed modules stored in session → progress percentage calculated → achievement unlocking (future feature)
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="card">
+                <h2>Voor jou aanbevolen</h2>
+                <p style="color: var(--text-gray); margin-bottom: 0.75rem;">
+                    Modules die het beste bij jou passen, gesorteerd op verwachte nuttigheid.
+                </p>
+                <p style="color: var(--text-gray); margin-bottom: 1.5rem; font-size: 0.9rem;">
+                    <strong style="color: var(--green);">⭐ Score:</strong> Toont hoe nuttig andere gebruikers deze module vonden (1-5 sterren). Hogere scores betekenen meer waardevolle content.
+                </p>
+
+                <!-- Guest Mode Banner (shown only for guests) -->
+                <div id="guestBanner"></div>
+
+                <div class="tech-info">
+                    🔧 <strong>Recommendation engine:</strong> POST /api/recommendations → hybrid scoring (70% collaborative filtering + 30% content-based) → interest-weighted → top-K ranking → sorted by predicted rating
+                </div>
+
+                <div class="modules-grid" id="recommendedModules"></div>
+            </div>
+
+            <!-- All Modules -->
+            <div class="card">
+                <h2>Alle modules</h2>
+                <p style="color: var(--text-gray); margin-bottom: 1.5rem;">
+                    Ontdek alle 30 beschikbare trainingsmodules.
+                </p>
+
+                <div class="tech-info">
+                    🔧 <strong>Dataset:</strong> 30 modules from PostgreSQL database (seeded from CSV on first deploy) | scam_types: shopping (10), ai_voice (8), whatsapp (3), phishing (3), bank (10) | difficulty: 1-5 | target_literacy: 1-5 | duration: 3-11min | persistent storage on Railway
+                </div>
+
+                <div class="modules-grid" id="allModules"></div>
+            </div>
+        </div>
+
+        <!-- Module Content -->
+        <div class="card" id="moduleContent" style="display: none;">
+            <button class="btn btn-secondary back-button" onclick="backToDashboard()">← Terug naar overzicht</button>
+            <h2 id="moduleTitle"></h2>
+            <div id="moduleQuiz"></div>
+
+            <!-- Rating -->
+            <div class="rating-container" id="ratingContainer" style="display: none;">
+                <div class="rating-title">Hoe nuttig vond je deze module?</div>
+                <p style="color: var(--text-gray); font-size: 0.95rem; margin-bottom: 1rem;">
+                    Geef een score van 1 tot 5 sterren<br>
+                    <span style="font-size: 0.85rem;">★ = niet nuttig • ★★★★★ = zeer nuttig</span>
+                </p>
+                <div class="stars" id="ratingStars">
+                    <span class="star" onclick="rate(1)">★</span>
+                    <span class="star" onclick="rate(2)">★</span>
+                    <span class="star" onclick="rate(3)">★</span>
+                    <span class="star" onclick="rate(4)">★</span>
+                    <span class="star" onclick="rate(5)">★</span>
+                </div>
+                <p style="color: var(--text-gray); font-size: 0.85rem; margin-top: 0.75rem;">Je beoordeling helpt ons de beste modules voor jou te vinden.</p>
+
+                <div class="tech-info">
+                    🔧 <strong>Rating system:</strong> user rating (1.0-5.0 float) → POST /api/ratings → collaborative filtering matrix updated → future recommendations improved for all users
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="moduleNextBtn" style="display: none;" onclick="completeModule()">Doorgaan →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">👤 Je profiel</div>
+                <button class="modal-close" onclick="closeProfileModal()">×</button>
+            </div>
+
+            <div id="profileContent"></div>
+        </div>
+    </div>
+
+    <!-- Debug Modal -->
+    <div class="modal" id="debugModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">🔧 debug panel</div>
+                <button class="modal-close" onclick="closeDebugPanel()">×</button>
+            </div>
+
+            <div class="debug-section">
+                <h3>session data</h3>
+                <div class="debug-data" id="debugSessionData">geen data</div>
+            </div>
+
+            <div class="debug-section">
+                <h3>API logs</h3>
+                <div class="debug-data" id="debugApiLogs">geen logs</div>
+            </div>
+
+            <div class="debug-section">
+                <h3>acties</h3>
+                <div class="debug-actions">
+                    <button class="debug-btn-action" onclick="debugResetProgress()">🔄 reset progress</button>
+                    <button class="debug-btn-action" onclick="debugCompleteRandom()">🎲 complete random module</button>
+                    <button class="debug-btn-action" onclick="debugRefreshRecommendations()">↻ refresh recommendations</button>
+                    <button class="debug-btn-action" onclick="debugViewProfile()">👤 view full profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js?v=10.3"></script>
+</body>
+</html>

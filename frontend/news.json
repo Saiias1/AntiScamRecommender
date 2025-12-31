@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "title": "Nieuwe phishing-campagne richt zich op Belgische bankklanten",
+    "date": "2025-01-15",
+    "source": "VRT NWS",
+    "url": "https://www.vrt.be/vrtnws/nl/",
+    "relatedModule": "phishing"
+  },
+  {
+    "id": 2,
+    "title": "CERT waarschuwt voor nepwebshops tijdens wintersolden",
+    "date": "2025-01-14",
+    "source": "CERT.be",
+    "url": "https://cert.be/nl",
+    "relatedModule": "shopping"
+  },
+  {
+    "id": 3,
+    "title": "WhatsApp-oplichters vragen geld via 'noodgevallen'",
+    "date": "2025-01-12",
+    "source": "Het Laatste Nieuws",
+    "url": "https://www.hln.be/",
+    "relatedModule": "whatsapp"
+  },
+  {
+    "id": 4,
+    "title": "AI-spraakkloon gebruikt om ouders op te lichten",
+    "date": "2025-01-10",
+    "source": "De Standaard",
+    "url": "https://www.standaard.be/",
+    "relatedModule": "ai_voice"
+  },
+  {
+    "id": 5,
+    "title": "Federale politie waarschuwt voor nieuwe bankfraude via sms",
+    "date": "2025-01-08",
+    "source": "Politie.be",
+    "url": "https://www.politie.be/",
+    "relatedModule": "bank"
+  },
+  {
+    "id": 6,
+    "title": "Datalek bij Belgische telecomoperator treft 50.000 klanten",
+    "date": "2025-01-05",
+    "source": "VRT NWS",
+    "url": "https://www.vrt.be/vrtnws/nl/",
+    "relatedModule": null
+  },
+  {
+    "id": 7,
+    "title": "Oplichters misbruiken naam van Bpost voor pakketfraude",
+    "date": "2025-01-03",
+    "source": "RTBF",
+    "url": "https://www.rtbf.be/",
+    "relatedModule": "phishing"
+  },
+  {
+    "id": 8,
+    "title": "Cybersecurity-experts voorspellen toename AI-gedreven fraude in 2025",
+    "date": "2024-12-28",
+    "source": "De Tijd",
+    "url": "https://www.tijd.be/",
+    "relatedModule": "ai_voice"
+  },
+  {
+    "id": 9,
+    "title": "Malafide webshops blijven Belgische consumenten duperen",
+    "date": "2024-12-22",
+    "source": "Test Aankoop",
+    "url": "https://www.test-aankoop.be/",
+    "relatedModule": "shopping"
+  },
+  {
+    "id": 10,
+    "title": "Phishing-mails namens FOD Financiën in omloop",
+    "date": "2024-12-20",
+    "source": "CERT.be",
+    "url": "https://cert.be/nl",
+    "relatedModule": "phishing"
+  },
+  {
+    "id": 11,
+    "title": "Bankieren via app: veiligheidstips van Test Aankoop",
+    "date": "2024-12-18",
+    "source": "Test Aankoop",
+    "url": "https://www.test-aankoop.be/",
+    "relatedModule": "bank"
+  },
+  {
+    "id": 12,
+    "title": "WhatsApp-fraudeurs doen zich voor als familieleden",
+    "date": "2024-12-15",
+    "source": "Het Nieuwsblad",
+    "url": "https://www.nieuwsblad.be/",
+    "relatedModule": "whatsapp"
+  },
+  {
+    "id": 13,
+    "title": "Belgische bedrijven verliezen miljoenen door CEO-fraude",
+    "date": "2024-12-12",
+    "source": "De Standaard",
+    "url": "https://www.standaard.be/",
+    "relatedModule": null
+  },
+  {
+    "id": 14,
+    "title": "Neptickets voor festivals en concerten circuleren online",
+    "date": "2024-12-10",
+    "source": "VRT NWS",
+    "url": "https://www.vrt.be/vrtnws/nl/",
+    "relatedModule": "shopping"
+  },
+  {
+    "id": 15,
+    "title": "Politie ontmantelt internationaal phishing-netwerk",
+    "date": "2024-12-08",
+    "source": "Belga",
+    "url": "https://www.belga.be/",
+    "relatedModule": "phishing"
+  },
+  {
+    "id": 16,
+    "title": "Deepfake-video's gebruikt om bankrekeningen leeg te halen",
+    "date": "2024-12-05",
+    "source": "De Morgen",
+    "url": "https://www.demorgen.be/",
+    "relatedModule": "ai_voice"
+  },
+  {
+    "id": 17,
+    "title": "CERT.be lanceert nieuwe campagne tegen online fraude",
+    "date": "2024-12-03",
+    "source": "CERT.be",
+    "url": "https://cert.be/nl",
+    "relatedModule": null
+  },
+  {
+    "id": 18,
+    "title": "Valentijnsfraude: nepprofielen op datingapps nemen toe",
+    "date": "2024-12-01",
+    "source": "Het Laatste Nieuws",
+    "url": "https://www.hln.be/",
+    "relatedModule": null
+  },
+  {
+    "id": 19,
+    "title": "QR-code fraude: oplichters plakken valse codes op parkeermeters",
+    "date": "2024-11-28",
+    "source": "VRT NWS",
+    "url": "https://www.vrt.be/vrtnws/nl/",
+    "relatedModule": null
+  },
+  {
+    "id": 20,
+    "title": "Bankkaartfraude aan winkelkassa's neemt toe",
+    "date": "2024-11-25",
+    "source": "Politie.be",
+    "url": "https://www.politie.be/",
+    "relatedModule": "bank"
+  }
+]
