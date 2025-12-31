@@ -93,15 +93,15 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    var logger = services.GetRequiredService<ILogger<Program>>();
+    var dbLogger = services.GetRequiredService<ILogger<Program>>();
 
     try
     {
         var context = services.GetRequiredService<AntiScamDbContext>();
 
-        logger.LogInformation("Ensuring database is created...");
+        dbLogger.LogInformation("Ensuring database is created...");
         await context.Database.EnsureCreatedAsync();
-        logger.LogInformation("Database ready");
+        dbLogger.LogInformation("Database ready");
 
         // Seed initial data from CSV files
         var dataPath = Path.Combine(Directory.GetCurrentDirectory(), "Data");
@@ -110,7 +110,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        logger.LogError(ex, "An error occurred while migrating or seeding the database");
+        dbLogger.LogError(ex, "An error occurred while migrating or seeding the database");
         throw;
     }
 }
