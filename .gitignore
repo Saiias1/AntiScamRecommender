@@ -54,9 +54,6 @@ artifacts/
 *.log
 *.tmp
 
-# API folder - separate git repository
-API/
-
 # Node modules
 node_modules/
 
