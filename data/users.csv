@@ -999,3 +999,8 @@ user_id,user_cluster,digital_literacy,age_group,risk_profile,preferred_topic
 998,2,5,26-35,low,whatsapp
 999,5,2,46-60,high,ai_voice
 1000,3,2,36-45,low,shopping
+
+1001,4,3,26-35,medium,phishing
+1002,1,0,,high,
+1003,4,3,26-35,medium,phishing
+1004,4,3,26-35,medium,phishing
