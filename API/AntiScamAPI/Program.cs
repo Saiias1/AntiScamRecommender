@@ -35,6 +35,7 @@ if (string.IsNullOrEmpty(connectionString))
 }
 
 // Railway PostgreSQL URLs need to be converted from postgres:// to the EF Core format
+// Only convert if it's in postgres:// format, otherwise use as-is (Railway may provide it pre-formatted)
 if (!string.IsNullOrEmpty(connectionString) && connectionString.StartsWith("postgres://"))
 {
     connectionString = connectionString.Replace("postgres://", "");
@@ -45,6 +46,7 @@ if (!string.IsNullOrEmpty(connectionString) && connectionString.StartsWith("post
 
     connectionString = $"Host={hostPort[0]};Port={hostPort[1]};Database={hostInfo[1]};Username={userInfo[0]};Password={userInfo[1]};SSL Mode=Require;Trust Server Certificate=true";
 }
+// If Railway provides a pre-formatted connection string, it will be used as-is
 
 builder.Services.AddDbContext<AntiScamDbContext>(options =>
     options.UseNpgsql(connectionString));
