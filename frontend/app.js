@@ -1469,8 +1469,8 @@ function showRegister() {
     currentStep = 1;
     updateProgress();
 
-    // Make sure step 1 is active
-    document.querySelectorAll('.step-content').forEach(step => {
+    // Make sure step 1 is active - hide all steps first
+    document.querySelectorAll('.step').forEach(step => {
         step.classList.remove('active');
     });
     document.getElementById('step1').classList.add('active');
