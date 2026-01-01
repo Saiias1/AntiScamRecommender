@@ -1437,10 +1437,37 @@ function showRegister() {
     document.getElementById('loginCard').style.display = 'none';
     document.getElementById('dashboardSection').style.display = 'none';
 
+    // Reset user data completely
+    userData.interests = [];
+    userData.quizAnswers = [];
+    userData.quizScore = 0;
+
+    // Reset UI - remove all selected interests
+    document.querySelectorAll('.interest-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+
+    // Reset all quiz options
+    document.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.classList.remove('selected');
+        opt.style.pointerEvents = 'auto';
+    });
+
+    // Hide all quiz feedback
+    document.querySelectorAll('.quiz-feedback').forEach(feedback => {
+        feedback.style.display = 'none';
+    });
+
     // Show registration form
     document.getElementById('onboardingCard').style.display = 'block';
     currentStep = 1;
     updateProgress();
+
+    // Make sure step 1 is active
+    document.querySelectorAll('.step-content').forEach(step => {
+        step.classList.remove('active');
+    });
+    document.getElementById('step1').classList.add('active');
 }
 
 function showLogin() {
