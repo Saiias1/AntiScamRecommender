@@ -1458,6 +1458,12 @@ function showRegister() {
         feedback.style.display = 'none';
     });
 
+    // Reset quiz score display
+    const quizScoreEl = document.getElementById('quizScore');
+    if (quizScoreEl) {
+        quizScoreEl.textContent = '0/5';
+    }
+
     // Show registration form
     document.getElementById('onboardingCard').style.display = 'block';
     currentStep = 1;
